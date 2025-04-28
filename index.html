@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>11-D sinf Xotiralar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .content {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Xotira qulfini ochish !</h2>
+        <input type="password" id="password" placeholder="Parolni kiriting">
+        <button onclick="checkPassword()">Kirish</button>
+    </div>
+
+    <div class="content" id="content">
+        <h1>11-D sinf Xotiralar</h1>
+        <p><a href=""></a></p>
+        <p>Mana bu yerga sinfdoshlarimizning suratlari va videolari joylanadi.</p>
+        <div>
+           <video controls src="./Img 9867.mp4"></video>
+            <video controls src="./Img 5720.mp4"></video>
+            
+            </div>
+             </div>
+             
+    </div>
+    
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var correctPassword = "parol2025"; // Parolni shu yerga kiritamiz
+
+            if(password === correctPassword) {
+                document.querySelector(".login-container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Noto'g'ri parol!");
+            }
+        }
+    </script>
+
+</body>
+</html>

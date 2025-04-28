@@ -1,0 +1,30 @@
+img{
+    width: 350px;
+    height: 500px;
+}
+.content{
+    justify-content: center;
+    width: 350px;
+    height: 500px;
+}
+.yosinxo{
+    width: 380px;
+    height: 500px;
+}
+.nasiba{
+    width: 355px;
+    height: 520px;
+}
+.hamma{
+    width: 100vh;
+    height: 100vh;
+}
+.sinf{
+    justify-content: center;
+    width: 1200px;
+    height: 800px;
+}
+video{
+    width: 350px;
+    height: 500px;
+}
