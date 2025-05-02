@@ -161,8 +161,93 @@
       }
     }
   </script>
-  
+  <!-- HTML faylning oxiriga qo'shing -->
+<script>
+  function checkPassword() {
+    const password = document.getElementById("password").value;
+    const correctPassword = "parol2025";
 
-.
+    if (password === correctPassword) {
+      document.getElementById("login").style.display = "none";
+
+      // Yuklanmoqda animatsiyasini ko‘rsatish
+      const loader = document.createElement("div");
+      loader.id = "loader";
+      loader.style.position = "fixed";
+      loader.style.top = "0";
+      loader.style.left = "0";
+      loader.style.width = "100%";
+      loader.style.height = "100%";
+      loader.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+      loader.style.display = "flex";
+      loader.style.justifyContent = "center";
+      loader.style.alignItems = "center";
+      loader.style.zIndex = "9999";
+      loader.style.flexDirection = "column";
+      loader.style.textAlign = "center";
+      loader.innerHTML = `
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <div style="border: 5px solid #ccc; border-top: 5px solid #4CAF50; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+          <p style="font-size: 18px; color: #4CAF50; margin-left: 10px;">Yuklanmoqda...</p>
+        </div>
+      `;
+      document.body.appendChild(loader);
+
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes spin {
+          100% { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(style);
+
+      setTimeout(() => {
+        document.body.removeChild(loader);
+        document.getElementById("content").style.display = "block";
+        document.body.style.backgroundImage = "none";
+        document.body.style.backgroundColor = "#f4f4f9";
+
+        // Faqat bitta videoni avtomatik o‘ynatish
+        const firstVideo = document.querySelector("video");
+        if (firstVideo) {
+          firstVideo.play().catch(() => {});
+        }
+      }, 2000);
+    } else {
+      alert("Noto'g'ri parol!");
+    }
+  }
+</script>
+<script>
+  if (window.innerWidth > 768) {
+    // Kirish blokini butunlay yashiramiz
+    const login = document.getElementById("login");
+    if (login) login.style.display = "none";
+
+    // Ogohlantirish blokini yaratamiz
+    const blocker = document.createElement("div");
+    blocker.style.position = "fixed";
+    blocker.style.top = "0";
+    blocker.style.left = "0";
+    blocker.style.width = "100%";
+    blocker.style.height = "100%";
+    // blocker.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+    blocker.style.zIndex = "9999";
+    blocker.style.display = "flex";
+    blocker.style.flexDirection = "column";
+    blocker.style.justifyContent = "center";
+    blocker.style.alignItems = "center";
+    blocker.innerHTML = `
+      <h2 style="color:#333;">Bu sayt faqat telefon uchun mo‘ljallangan 📱</h2>
+      <p style="color:#666;">Iltimos, telefon orqali kirib ko‘ring.</p>
+    `;
+    document.body.appendChild(blocker);
+  }
+</script>
+
+
+
+
 </body>
+
 </html>
