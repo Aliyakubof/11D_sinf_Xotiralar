@@ -100,7 +100,10 @@
   <div class="content" id="content">
     <div class="reels-container">
       <div class="video-container">
-        <video id="video1" class="video" src="./Img 9788 (.mp4" autoplay controls></video>
+        <video id="myVideo" controls>
+          <source src="./Img 9788 (.mp4" type="video/mp4">
+        </video>
+        
         <video  class="video" src="./Img 5720.mp4"  controls></video>
         <video  class="video" src="./Img 9867.mp4"  controls></video>
       </div>
@@ -245,6 +248,26 @@
   }
 </script>
 
+  <!-- JavaScript kod -->
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      const correctPassword = "parol2025";
+
+      if (password === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        document.body.style.backgroundColor = "#f4f4f9";
+
+        const targetVideo = document.getElementById("myVideo");
+        if (targetVideo) {
+          targetVideo.play().catch(() => {});
+        }
+      } else {
+        alert("Noto'g'ri parol!");
+      }
+    }
+  </script>
 
 
 
