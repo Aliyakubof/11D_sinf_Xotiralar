@@ -1,96 +1,235 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <title>Sinfdoshlar Sayti</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moslashuvchan Dashboard</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #f8f9fa;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f2f4f8;
+      color: #333;
     }
+
+    .dashboard {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #1e1e2f;
+      color: white;
+      padding: 30px 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 22px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 15px;
+      margin: 10px 0;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #3a3a55;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 40px;
+      background-color: #ffffff;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
     .card {
-      border-radius: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f7f9fc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-    .form-switch label {
-      cursor: pointer;
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px; /* added margin between videos */
+    }
+
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .responsive-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* Mobilga moslash */
+    @media (max-width: 768px) {
+      .dashboard {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        text-align: center;
+      }
+
+      .sidebar a {
+        display: inline-block;
+        margin: 5px;
+      }
+
+      .main {
+        padding: 20px;
+      }
+
+      .header h1 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container mt-5">
-  <div class="card shadow-lg mx-auto p-4" style="max-width: 500px;">
-    <h3 class="text-center mb-4">Sinfdoshlar Sayti</h3>
+<div class="dashboard">
+  <div class="sidebar">
+    <h2>Menyu</h2>
+    <a href="#" class="active" onclick="showSection('asosiy', this)">Asosiy</a>
+    <a href="#" onclick="showSection('videolar', this)">Videolar</a>
+    <a href="#" onclick="showSection('rasmlar', this)">Rasmlar</a>
+    <a href="#" onclick="showSection('profil', this)">Profil</a>
+  </div>
 
-    <!-- LOGIN FORM -->
-    <div id="loginForm">
-      <h5 class="text-center mb-3">Kirish</h5>
-      <input type="text" id="loginName" class="form-control mb-2" placeholder="Ismingiz">
-      <input type="password" id="loginPassword" class="form-control mb-2" placeholder="Parolingiz">
-      <div class="d-grid">
-        <button class="btn btn-dark" onclick="login()">Kirish</button>
-      </div>
-      <p class="text-center mt-3">
-        Hisobingiz yo‘qmi?
-        <a href="#" onclick="toggleForms()">Ro‘yxatdan o‘ting</a>
-      </p>
+  <div class="main">
+    <div class="header">
+      <h1 id="section-title">Asosiy</h1>
     </div>
 
-    <!-- REGISTER FORM -->
-    <div id="registerForm" style="display: none;">
-      <h5 class="text-center mb-3">Ro'yxatdan o'tish</h5>
-      <input type="text" id="registerName" class="form-control mb-2" placeholder="Ismingiz">
-      <input type="password" id="registerPassword" class="form-control mb-2" placeholder="Parol yarating">
-      <div class="d-grid">
-        <button class="btn btn-success" onclick="register()">Ro'yxatdan o'tish</button>
+    <div id="asosiy" class="section active">
+      <div class="card">
+        <video style="border: 1px solid black;border-radius: 20px;" width="350px" controls src="./00000.mp4" autoplay></video>
+        <center><p>Xotiralar doimo abadiy✨</p></center>
       </div>
-      <p class="text-center mt-3">
-        Allaqachon hisobingiz bormi?
-        <a href="#" onclick="toggleForms()">Kirish</a>
-      </p>
+    </div>
+
+    <div id="videolar" class="section">
+      <div class="card">
+        <div class="video-container">
+          <video controls>
+            <source src="./Img 9788 (.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-container">
+          <video controls>
+            <source src="./0505(2).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-container">
+          <video controls>
+            <source src="./Img 9867.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div id="rasmlar" class="section">
+      <div class="card">
+        <img src="./3G0A1166.jpg" alt="Rasm" class="responsive-img">
+        <img src="./3G0A1186.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20240307_175630_392.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20240308_145640_336.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20240308_150017_192.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20240308_150817_336.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20240904_131946_619.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20241126_160327_296.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20241231_135417_119.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20241231_140209_806.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20250106_174634_880.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20250222_163037_221.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20250410_191107_918.jpg" alt="Rasm" class="responsive-img">
+        <img src="./IMG_20250410_191217_910.jpg" alt="Rasm" class="responsive-img">
+        <audio id="myAudio" src="./indila.mp3" autoplay></audio>
+      </div>
+    </div>
+
+    <div id="profil" class="section">
+      <div class="card">
+        <p>Foydalanuvchi profili bu yerda aks etadi.</p>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  function toggleForms() {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
-    registerForm.style.display = registerForm.style.display === 'none' ? 'block' : 'none';
-  }
+  let audio = document.getElementById("myAudio");
 
-  function register() {
-    const name = document.getElementById('registerName').value.trim();
-    const password = document.getElementById('registerPassword').value;
+  function showSection(id, element) {
+    // Sektsiyalarni ko'rsatish va yashirish
+    document.querySelectorAll('.section').forEach((sec) => {
+      sec.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
 
-    if (name && password) {
-      localStorage.setItem(name, password);
-      localStorage.setItem('currentUser', name);
-      alert('Ro’yxatdan o’tdingiz. Endi kiring.');
-      toggleForms();
+    // Sektsiya nomini yangilash
+    document.getElementById('section-title').textContent = element.textContent;
+
+    // Menyudagi faol havolani belgilash
+    document.querySelectorAll('.sidebar a').forEach((link) => {
+      link.classList.remove('active');
+    });
+    element.classList.add('active');
+
+    // Rasmlar bo'limi ko'rsatilganda musiqa boshlansin
+    if (id === 'rasmlar') {
+      audio.play();
     } else {
-      alert('Iltimos, barcha maydonlarni to’ldiring.');
-    }
-  }
-
-  function login() {
-    const name = document.getElementById('loginName').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    const stored = localStorage.getItem(name);
-
-    if (stored && stored === password) {
-      localStorage.setItem('currentUser', name);
-      window.location.href = 'dashboard.html';
-    } else {
-      alert('Noto‘g‘ri ism yoki parol.');
+      audio.pause();
+      audio.currentTime = 0; // Musiqani boshlanishiga qaytish
     }
   }
 </script>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
