@@ -1,288 +1,165 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Xotiralar</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f2f4f8;
-      color: #333;
-    }
-
-    .dashboard {
-      display: none;
-      flex-direction: row;
-      min-height: 100vh;
-    }
-
-    .sidebar {
-      width: 240px;
-      background-color: #1e1e2f;
-      color: white;
-      padding: 30px 20px;
-    }
-
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 22px;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 12px 15px;
-      margin: 10px 0;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background-color 0.2s ease;
-    }
-
-    .sidebar a:hover,
-    .sidebar a.active {
-      background-color: #3a3a55;
-    }
-
-    .main {
-      flex-grow: 1;
-      padding: 40px;
-      background-color: #ffffff;
-    }
-
-    .header h1 {
-      font-size: 26px;
-      margin-bottom: 20px;
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    .card {
-      padding: 20px;
-      border-radius: 10px;
-      background-color: #f7f9fc;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .responsive-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    #intro-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #1e293b;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px;
-      z-index: 9999;
-    }
-
-    #intro-screen h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    #intro-screen p {
-      font-size: 18px;
-      margin-bottom: 30px;
-      line-height: 1.5;
-    }
-
-    #intro-screen button {
-      background-color: #38bdf8;
-      border: none;
-      color: white;
-      font-size: 16px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    #intro-screen button:hover {
-      background-color: #0ea5e9;
-    }
-
-    @media (max-width: 768px) {
-      .dashboard {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        text-align: center;
-      }
-
-      .sidebar a {
-        display: inline-block;
-        margin: 5px;
-      }
-
-      .main {
-        padding: 20px;
-      }
-
-      .header h1 {
-        font-size: 22px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xotiralar</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- E'lon oynasi -->
+<!-- Intro animatsiya -->
 <div id="intro-screen">
   <h1>Xotiralarni birgalikda eslaylik!</h1>
-  <p>
-    Bu sahifada sizga unutilmas xotiralarni taklif qilamiz.<br>
-    Har bir video va surat — bu yuragingizdagi bir bo‘lak.<br><br>
-    Iltimos kirishdan avval qurilmangiz ovozi va nurini ko'paytirib oling!
-  </p>
-  <button onclick="enterSite()">Ko‘rishni boshlash</button>
+  <p>Har bir video va surat — bu yuragingizdagi bir bo‘lak.<br>Iltimos kirishdan avval qurilmangiz ovozi va nurini ko'paytirib oling!</p>
+  <button onclick="enterSite()">Boshlash</button>
 </div>
 
-<!-- Asosiy sayt -->
-<div class="dashboard" id="dashboard">
-  <div class="sidebar">
-    <h2>Menyu</h2>
-    <a href="#" class="active" onclick="showSection('asosiy', this)">Asosiy</a>
-    <a href="#" onclick="showSection('videolar', this)">Videolar</a>
-    <a href="#" onclick="showSection('rasmlar', this)">Rasmlar</a>
-    <a href="#" onclick="showSection('profil', this)">Profil</a>
+<header>
+  <nav>
+    <button class="active" onclick="showSection('home')">Bosh sahifa</button>
+    <button onclick="showSection('videos')">Videolar</button>
+    <button onclick="showSection('images')">Rasmlar</button>
+  </nav>
+</header>
+
+<main>
+  <!-- Bosh sahifa -->
+  <div id="home" class="section">
+    <h1>Xotiralar</h1>
+    <video id="mainVideo" controls>
+      <source src="./00000.mp4" type="video/mp4">
+    </video>
   </div>
 
-  <div class="main">
-    <div class="header">
-      <h1 id="section-title">Asosiy</h1>
+  <!-- Videolar -->
+  <div id="videos" class="section">
+    <h1>Videolar</h1>
+    <div class="video-fullscreen-container">
+      <video src="./Img 9788 (.mp4" controls></video>
     </div>
-
-    <div id="asosiy" class="section active">
-      <div class="card">
-        <center>
-          <video id="mainVideo" style="border: 1px solid black; border-radius: 20px;" width="330px" controls src="./00000.mp4"></video>
-          <p style="margin-top: 15px;">Xotiralar doimo abadiy✨</p>
-        </center>
-      </div>
+    <div class="video-fullscreen-container">
+      <video src="./Img 5720.mp4" controls></video>
     </div>
-
-    <div id="videolar" class="section">
-      <div class="card">
-        <div class="video-container">
-          <video controls><source src="./Img 9788 (.mp4" type="video/mp4"></video>
-        </div>
-        <div class="video-container">
-          <video controls><source src="./Img 9735.mp4" type="video/mp4"></video>
-        </div>
-        <div class="video-container">
-          <video controls><source src="./Img 9867.mp4" type="video/mp4"></video>
-        </div>
-      </div>
+    <div class="video-fullscreen-container">
+      <video src="./Img 9735.mp4" controls></video>
     </div>
-
-    <div id="rasmlar" class="section">
-      <div class="card">
-        <center>
-          <img src="./3G0A1166.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20240307_175630_392.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20240308_145640_336.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20240308_150017_192.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20240308_150817_336.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20240904_131946_619.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20241126_160327_296.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20241231_135417_119.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20241231_140209_806.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20250106_174634_880.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20250222_163037_221.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20250410_191107_918.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_20250410_191217_910.jpg" alt="Rasm" class="responsive-img">
-          <img src="./IMG_4487.HEIC" alt="Rasm" class="responsive-img">
-        </center>
-        <audio id="myAudio" src="./indila.mp3"></audio>
-      </div>
+    <div class="video-fullscreen-container">
+      <video src="./Img 9867.mp4" controls></video>
     </div>
-
-    <div id="profil" class="section">
-      <div class="card">
-        <p style="font-weight: 500;">Foydalanuvchi profili bu yerda aks etadi.</p>
-      </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/Abbos tur.mp4" controls></video>
     </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/eta kak gonku.mp4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/Img 0454.mp4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/Img 0456.mp4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/Img 0458.mp4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/Jgarla Bilan Yaxsh Kunda.mp4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/ozbekiston vatanim.MP4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/Video 2025-10-30 06-06-00.mp4" controls></video>
+    </div>
+    <div class="video-fullscreen-container">
+      <video src="./Документы/kitob uqish.mp4" controls></video>
+    </div>
+     <div class="video-fullscreen-container">
+      <video src="./Документы/Eroina1.mp4" controls></video>
+    </div>
+    
   </div>
-</div>
+
+  <!-- Rasmlar -->
+  <div id="images" class="section">
+    <h1>Rasmlar</h1>
+    <audio id="imgAudio" src="./indila.mp3"></audio>
+    <img src="./IMG_20240307_175630_392.jpg" class="responsive-img">
+    <img src="./IMG_20240308_145640_336.jpg" class="responsive-img">
+    <img src="./IMG_20240308_150017_192.jpg" class="responsive-img">
+    <img src="./Документы/photo_2025-03-07_10-48-04.jpg" class="responsive-img">
+    <img src="./Документы/photo_2025-05-12_20-14-15.jpg" class="responsive-img">
+    <img src="./IMG_20240308_150817_336.jpg" class="responsive-img">
+    <img src="./IMG_20240904_131946_619.jpg" class="responsive-img">
+    <img src="./IMG_20241126_160327_296.jpg" class="responsive-img">
+    <img src="./IMG_20241231_135417_119.jpg" class="responsive-img">
+    <img src="./IMG_20241231_140209_806.jpg" class="responsive-img">
+    <img src="./IMG_20250106_174634_880.jpg" class="responsive-img">
+    <img src="./IMG_20250222_163037_221.jpg" class="responsive-img">
+    <img src="./IMG_20250309_120120_353.HEIC" class="responsive-img">
+    <img src="./IMG_20250410_191107_918.jpg" class="responsive-img">
+    <img src="./IMG_20250410_191217_910.jpg" class="responsive-img">
+  </div>
+</main>
 
 <script>
-  const audio = document.getElementById("myAudio");
+// Animatsiyadan keyin bosh sahifa ochish
+function enterSite(){
+  document.getElementById('intro-screen').classList.add('hidden');
+  showSection('home');
+  const mainVideo = document.getElementById('mainVideo');
+  mainVideo.play();
+}
 
-  function enterSite() {
-    document.getElementById('intro-screen').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'flex';
-    const mainVideo = document.getElementById('mainVideo');
-    if (mainVideo) {
-      mainVideo.play();
-    }
+// Section toggle va navbar active
+function showSection(id){
+  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`nav button[onclick="showSection('${id}')"]`).classList.add('active');
+
+  // Rasmlar bo‘limida audio autoplay
+  const audio = document.getElementById('imgAudio');
+  if(id === 'images'){
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
   }
+}
 
-  function showSection(id, element) {
-    document.querySelectorAll('.section').forEach((sec) => {
-      sec.classList.remove('active');
-    });
-    document.getElementById(id).classList.add('active');
+// Videolar bo‘limi fullscreen tugmalar
+const allVideos = Array.from(document.querySelectorAll(".video-fullscreen-container video"));
+let currentIndex = 0;
 
-    document.getElementById('section-title').textContent = element.textContent;
+allVideos.forEach((vid, idx)=>{
+  const controls = document.createElement("div");
+  controls.className = "fullscreen-controls";
+  controls.innerHTML = `<button class="prevBtn">⟵</button><button class="nextBtn">⟶</button>`;
+  document.body.appendChild(controls);
 
-    document.querySelectorAll('.sidebar a').forEach((link) => {
-      link.classList.remove('active');
-    });
-    element.classList.add('active');
+  const prevBtn = controls.querySelector(".prevBtn");
+  const nextBtn = controls.querySelector(".nextBtn");
 
-    if (id === 'rasmlar') {
-      audio.play();
+  function updateControls() {
+    if(document.fullscreenElement === vid){
+      controls.style.display = "flex";
     } else {
-      audio.pause();
-      audio.currentTime = 0;
+      controls.style.display = "none";
     }
   }
+
+  prevBtn.addEventListener("click", ()=> {
+    if(idx>0) allVideos[idx-1].requestFullscreen();
+  });
+
+  nextBtn.addEventListener("click", ()=> {
+    if(idx<allVideos.length-1) allVideos[idx+1].requestFullscreen();
+  });
+
+  vid.addEventListener("fullscreenchange", updateControls);
+});
 </script>
 
 </body>
